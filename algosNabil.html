@@ -10,28 +10,57 @@
 
     <script>
 
-        genre = prompt("Homme ou femme ?");
-        age = prompt("Age ?");
-        age = Number(age);
 
-        function imposable(genre, age) {
-            let impot;
-            if (genre === "homme" && age > 20) {
-                impot = "Vous êtes imposable";
-            }
-            else if (genre === "femme" && (age > 18 && age < 35)) {
-                impot = "Vous êtes imposable";
-            }
-            else {
-                impot = "Vous n'êtes pas imposable";
-            }
-            return impot;
+        let ageConducteur = prompt("Votre age");
+        let dureePermis = prompt("Permis obtenu depuis");
+        let accident = prompt("Nombre d'accident");
+        let dureeAssurance = prompt("Duree d'Assurance");
+
+        function tarif(ageConducteur, dureePermis, accident, dureeAssurance) {
+        let point = 0;
+
+        if (ageConducteur > 25) {
+            point += 1;
         }
+        if (dureePermis > 2) {
+            point += 1;
+        }
+        if (accident > 0) {
+            if (ageConducteur > 25 && dureePermis > 2){
+                point += 1;
+            }
+            for (i = 0; i < accident; i++) {
+                point -= 1;
+            } 
+        } else {
+            point += 1;
+        }        
+        if (dureeAssurance > 5) {
+            point += 1;
+        }
+        return point;
+    }
 
-        impot = imposable(genre, age);
-        console.log(impot);
+    point = tarif(ageConducteur, dureePermis, accident, dureeAssurance);
 
-
+    switch (point) {
+        case (point < 1):
+            console.log("Pas d'assurance");
+            break;
+        case (point = 1):
+            console.log("Tarif Rouge");
+            break;
+        case (point = 2):
+            console.log("Tarif Orange");
+            break;
+        case (point = 3):
+            console.log("Tarif Vert");
+            break;
+        case (point = 4):
+            console.log("Tarif Bleu");
+            break;
+    }
+    
 
 
 
