@@ -12,20 +12,31 @@
 
         let heure = prompt("L'heure ?");
         let minute = prompt("Minute ?");
+        let seconde = prompt("Seconde ?")
+
+        function heureMinute(heure, minute, seconde) {
+        let heureMinutePlusUn = 0
         heure = Number(heure);
         minute = Number(minute);
-        minute += 1;
-        if (minute >= 59) {
-            heure += 1,
+        seconde = Number(seconde);
+        seconde += 1;
+        if (seconde >= 60) {
+            minute += 1;
+            seconde = 0;
+        }
+        if (minute >= 60) {
+            heure += 1;
             minute = 0;
         } 
         if (heure >= 24) {
             heure = 0;
         }
-        console.log(`Dans une minute il sera ${heure}:${minute}`);
+        heureMinutePlusUn = `${heure}:${minute}:${seconde}`;
+        return heureMinutePlusUn;
+    }
 
-
-
+    heureMinutePlusUn = heureMinute(heure, minute, seconde);
+    console.log(`Dans une minute il sera ${heureMinutePlusUn}`);
 
 
 
