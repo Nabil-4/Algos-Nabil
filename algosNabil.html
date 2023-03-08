@@ -10,33 +10,31 @@
 
     <script>
 
-        let heure = prompt("L'heure ?");
-        let minute = prompt("Minute ?");
-        let seconde = prompt("Seconde ?")
+        photocopie = prompt("Nombre de photocopie ?");
+        photocopie = Number(photocopie);
 
-        function heureMinute(heure, minute, seconde) {
-        let heureMinutePlusUn = 0
-        heure = Number(heure);
-        minute = Number(minute);
-        seconde = Number(seconde);
-        seconde += 1;
-        if (seconde >= 60) {
-            minute += 1;
-            seconde = 0;
-        }
-        if (minute >= 60) {
-            heure += 1;
-            minute = 0;
-        } 
-        if (heure >= 24) {
-            heure = 0;
-        }
-        heureMinutePlusUn = `${heure}:${minute}:${seconde}`;
-        return heureMinutePlusUn;
-    }
+        function prixPhotocopie(photocopie) {
+            let prix10Premiere = 0.10
+            let prix20Suivante = 0.09
+            let prixAudela = 0.08
+            let prix = 0
 
-    heureMinutePlusUn = heureMinute(heure, minute, seconde);
-    console.log(`Dans une minute il sera ${heureMinutePlusUn}`);
+            if (photocopie <= 10) {
+                prix = photocopie * prix10Premiere;
+            } else if (photocopie > 10 && photocopie <= 30) {
+                prix = 10 * prix10Premiere;
+                photocopie -= 10;
+                prix = prix + (photocopie * prix20Suivante);
+            } else if (photocopie > 30) {
+                prix = (10 * prix10Premiere) + (20 * prix20Suivante);
+                photocopie -= 30;
+                prix = prix + (photocopie * prixAudela);
+            }
+            return prix;
+        }
+
+        prix = prixPhotocopie(photocopie);
+        console.log(`Prix : ${prix}€`);
 
 
 
