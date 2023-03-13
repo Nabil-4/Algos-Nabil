@@ -10,149 +10,61 @@
 
     <script>
 
-    // Exercice 6
-    // Les élections, obéissent à la règle suivante : 
-    // lorsque l'un des candidats obtient plus de 50% des suffrages, il est élu dès le premier tour. 
-    // En cas de deuxième tour, peuvent participer uniquement les candidats ayant obtenu au moins 
-    // 12,5% des voix au premier tour. 
-    // Vous devez écrire un algorithme qui permette la saisie des scores de quatre candidats (A, B, C et D) 
-    // au premier tour. 
 
-    // Cet algorithme traitera ensuite le candidat A (et uniquement lui), il dira si : il est élu, il est battu, 
-    // il se trouve en ballottage favorable (il participe au second tour en étant arrivé en tête à 
-    // l'issue du premier tour) il se trouve en ballottage défavorable 
-    // (il participe au second tour sans avoir été en tête au premier tour).
+    let ageConducteur = prompt("Votre age");
+    let dureePermis = prompt("Permis obtenu depuis");
+    let accident = prompt("Nombre d'accident");
+    let dureeAssurance = prompt("Duree d'Assurance");
 
-    
-    
-    function premierTour() {
-        let voteA = prompt("Nombre de vote ?");
-        voteA = Number(voteA);
-        let voteB = prompt("Nombre de vote ?");
-        voteB = Number(voteB);
-        let voteC = prompt("Nombre de vote ?");
-        voteC = Number(voteC);
-        let voteD = prompt("Nombre de vote ?");
-        voteD = Number(voteD);
-        let voteTotal = voteA + voteB + voteC + voteD;
+    function tarif(ageConducteur, dureePermis, accident, dureeAssurance) {                               // Au départ le conducteur a 0 point
+    let point = 0;
 
-        let totalPourcent = 100;
-        let pourcentVoteA = (voteA * totalPourcent) / voteTotal;
-        let pourcentVoteB = (voteB * totalPourcent) / voteTotal;
-        let pourcentVoteC = (voteC * totalPourcent) / voteTotal;
-        let pourcentVoteD = (voteD * totalPourcent) / voteTotal;
-
-        console.log(`Le candidat A a obtenue ${pourcentVoteA}% des voix`);
-        console.log(`Le candidat B a obtenue ${pourcentVoteB}% des voix`);
-        console.log(`Le candidat C a obtenue ${pourcentVoteC}% des voix`);
-        console.log(`Le candidat D a obtenue ${pourcentVoteD}% des voix`);
-
-        let candidatA = 0;
-        let candidatB = 0;
-        let candidatC = 0;
-        let candidatD = 0;
-
-        if ((totalPourcent / 2) < pourcentVoteA) {
-            resultatA = console.log("Le candidat A a obtenue plus de 50% des voix il est élue au premier tour.");
-        } else if ((totalPourcent / 2) < pourcentVoteB) {
-            resultatB = console.log("Le candidat B a obtenue plus de 50% des voix il est élue au premier tour.");
-        } else if ((totalPourcent / 2) < pourcentVoteC) {
-            resultatC = console.log("Le candidat C a obtenue plus de 50% des voix il est élue au premier tour.");
-        } else if ((totalPourcent / 2) < pourcentVoteD) {
-            resultatD = console.log("Le candidat D a obtenue plus de 50% des voix il est élue au premier tour.");
-        } else {
-            if ((totalPourcent / 8) < pourcentVoteA) {
-                console.log("Le candidat A est qualifié pour le second tour");
-                candidatA += 1;
-            } else {
-                console.log("Le candidat A n'est pas qualifié pour le second tour");
-            }
-            if ((totalPourcent / 8) < pourcentVoteB) {
-                console.log("Le candidat B est qualifié pour le second tour");
-                candidatB += 1;
-            }
-            if ((totalPourcent / 8) < pourcentVoteC) {
-                console.log("Le candidat C est qualifié pour le second tour");
-                candidatC += 1;
-            }
-            if ((totalPourcent / 8) < pourcentVoteD) {
-                console.log("Le candidat D est qualifié pour le second tour");
-                candidatD += 1;
-            }
-        }
-        let totalPointCandidat = candidatA + candidatB + candidatC + candidatD;
-        let tableauCandidat = [];
-        tableauCandidat.push(candidatA, candidatB, candidatC, candidatD, totalPointCandidat);
-
-        return tableauCandidat;
-    }    
-
-    tableauCandidat = premierTour();
-           
-
-    function secondTour() {
-        let totalPourcentSecond = 100;
-
-        let voteSecondA = 0;
-        let voteSecondB = 0;
-        let voteSecondC = 0;
-        let voteSecondD = 0;
-
-        let candidatA = 0;
-        let candidatB = 0;
-        let candidatC = 0;
-        let candidatD = 0;
-
-        if (tableauCandidat[4] > 0) {
-            if (tableauCandidat[0] >= 1) {
-                voteSecondA = prompt("Nombre de vote ?")
-                voteSecondA = Number(voteSecondA);
-            }
-            if (tableauCandidat[1] >= 1) {
-                voteSecondB = prompt("Nombre de vote ?")
-                voteSecondB = Number(voteSecondB);
-            }
-            if (tableauCandidat[2] >= 1) {
-                voteSecondC = prompt("Nombre de vote ?")
-                voteSecondC = Number(voteSecondC);
-            }
-            if (tableauCandidat[3] >= 1) {
-                voteSecondD = prompt("Nombre de vote ?")
-                voteSecondD = Number(voteSecondD);
-            }
-
-            let voteTotalSecond = voteSecondA + voteSecondB + voteSecondC + voteSecondD;
-            let pourcentSecondVoteA = (voteSecondA * totalPourcentSecond) / voteTotalSecond;
-            let pourcentSecondVoteB = (voteSecondB * totalPourcentSecond) / voteTotalSecond;
-            let pourcentSecondVoteC = (voteSecondC * totalPourcentSecond) / voteTotalSecond;
-            let pourcentSecondVoteD = (voteSecondD * totalPourcentSecond) / voteTotalSecond;
-
-            if (pourcentSecondVoteA > 0) {
-                candidatA = console.log(`Le candidat A a obtenue ${pourcentSecondVoteA}% des voix`);
-            }
-            if (pourcentSecondVoteB > 0) {
-                candidatB = console.log(`Le candidat B a obtenue ${pourcentSecondVoteB}% des voix`);
-            }
-            if (pourcentSecondVoteC > 0) {
-                candidatC = console.log(`Le candidat C a obtenue ${pourcentSecondVoteC}% des voix`);
-            }
-            if (pourcentSecondVoteD > 0) {
-                candidatD = console.log(`Le candidat D a obtenue ${pourcentSecondVoteD}% des voix`);
-            }
-        }
-
-        let tableauCandidat2 = [];
-        tableauCandidat2.push(candidatA, candidatB, candidatC, candidatD);
-        return tableauCandidat2;
+    if (ageConducteur > 25) {                                                                            // Si il a plus 25 ans il gagne un point
+        point += 1;
+    }
+    if (dureePermis > 2 && 18 <= (ageConducteur - dureePermis)) {                                        // Si il a le permis depuis plus de 2 ans et que son age est
+        point += 1;                                                                                      // superieur ou egal 18 ans en soustrayant sa duree de permis
+    }                                                                                                    // il a un point en plus
+    if (accident > 0) {                                                                                  
+        if (ageConducteur > 25 && dureePermis > 2) {                                                     // Si il a plus de 25 ans et 2 ans de permis il a un point supplementaire                                                   
+            point += 1;                                                                                  // et il perd un point par accident
+            for (i = 0; i < accident; i++) {                                                             // Si il a moins de 25 ans et moins de 2 ans de permis et au moins un
+                point -= 1;                                                                              // accident il n'a aucun point
+            }                                   
+        }                                                                    
+    } else if (18 <= ageConducteur) {                                                                    // Si il n'a aucun accident il gagne un point en plus
+        point += 1; 
+    }        
+    if (dureeAssurance > 5 && dureePermis >= dureeAssurance && 18 <= (ageConducteur - dureePermis)) {    // Si sa duree d'assurance est superieur a 5 ans et que sa duree de permis
+        point += 1;                                                                                      // est egal ou superieur a sa duree d'assurance et et qu'il a un age
+    }                                                                                                    // coherent avec sa duree de permis ils gagne un dernier point
+    return point;
     }
 
-    tableauCandidat2 = secondTour() 
+    point = tarif(ageConducteur, dureePermis, accident, dureeAssurance);
+
+    switch (point) {
+        case 0 :
+            console.log("Pas d'assurance");                                                               // En fonction du nombre de point on determine si il sera assurré 
+            break;                                                                                        // et a quel tarif
+        case 1 :
+            console.log("Tarif Rouge");
+            break;
+        case 2 :
+            console.log("Tarif Orange");
+            break;
+        case 3 :
+            console.log("Tarif Vert");
+            break;
+        case 4 :
+            console.log("Tarif Bleu");
+            break;
+        default : 
+            console.log("Reverifier les infos")                                     
+    }
+  
 
     </script>
-
-
-
-
 
 
 
